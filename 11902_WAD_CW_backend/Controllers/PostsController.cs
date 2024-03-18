@@ -32,7 +32,7 @@ namespace _11902_WAD_CW_backend.Controllers
             return post == null ? NotFound() : Ok(post);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> PutPost(Post post)
         {
             await _postRepository.Update(post);
