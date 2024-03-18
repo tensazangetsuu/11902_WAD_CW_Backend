@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\11902_WAD_CW_backend.props" />
+</Project>
