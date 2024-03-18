@@ -4,7 +4,7 @@
 
 namespace _11902_WAD_CW_backend.Data.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class Blog : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -12,14 +12,14 @@ using _11902_WAD_CW_backend.Data;
 namespace _11902_WAD_CW_backend.Data.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    [Migration("20240318134439_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20240318144648_Blog")]
+    partial class Blog
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.28")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
