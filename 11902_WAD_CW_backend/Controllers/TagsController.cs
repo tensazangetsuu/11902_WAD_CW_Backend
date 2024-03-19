@@ -52,7 +52,7 @@ namespace _11902_WAD_CW_backend.Controllers
 
         // PUT: api/Tags/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> PutTag(int id, Tag tag)
         {
             if (id != tag.ID)

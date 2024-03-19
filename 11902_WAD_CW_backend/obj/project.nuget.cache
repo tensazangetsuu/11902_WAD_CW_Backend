@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F4WHVKRodK1L/f8L16cdqGKUuAxNl+UOPGpQZckVcDWFl2astAIABuvnLKEuq1uOwONHH2LOEHq9jWim1EN30g==",
+  "dgSpecHash": "fG+dvamSfi+l+FOYCvDR+PgT4ORIs4GCHc33BbUMVa6dZ8N3cp/mpJjzy92ElYQJX/4GDWEzqPGYfxuWragscw==",
   "success": true,
-  "projectFilePath": "E:\\Users\\00011902\\source\\repos\\11902_WAD_CW_backend\\11902_WAD_CW_backend\\11902_WAD_CW_backend.csproj",
+  "projectFilePath": "E:\\Users\\00011902\\Downloads\\back\\11902_WAD_CW_Backend\\11902_WAD_CW_backend\\11902_WAD_CW_backend.csproj",
   "expectedPackageFiles": [
     "E:\\Users\\00011902\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "E:\\Users\\00011902\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
