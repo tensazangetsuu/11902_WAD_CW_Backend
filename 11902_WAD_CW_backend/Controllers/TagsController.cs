@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using _11902_WAD_CW_backend.Data;
 using _11902_WAD_CW_backend.Models;
+using _11902_WAD_CW_backend.Repository;
 
 namespace _11902_WAD_CW_backend.Controllers
 {
@@ -14,111 +14,54 @@ namespace _11902_WAD_CW_backend.Controllers
     [ApiController]
     public class TagsController : ControllerBase
     {
-        private readonly BlogContext _context;
-
-        public TagsController(BlogContext context)
+        private readonly IBlogRepository<Tag> _blogRepository;
+        public TagsController(IBlogRepository<Tag> blogRepository)
         {
-            _context = context;
+            _blogRepository = blogRepository;
         }
 
-        // GET: api/Tags
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tag>>> GetTags()
-        {
-          if (_context.Tags == null)
-          {
-              return NotFound();
-          }
-            return await _context.Tags.ToListAsync();
-        }
+        public async Task<IEnumerable<Tag>> GetTags() => await _blogRepository.GetAll();
 
-        // GET: api/Tags/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Tag>> GetTag(int id)
         {
-          if (_context.Tags == null)
-          {
-              return NotFound();
-          }
-            var tag = await _context.Tags.FindAsync(id);
-
+            var tag = await _blogRepository.GetByID(id);
             if (tag == null)
             {
                 return NotFound();
             }
-
-            return tag;
+            else
+            {
+                return Ok(tag);
+            }
         }
 
-        // PUT: api/Tags/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut]
-        public async Task<IActionResult> PutTag(int id, Tag tag)
+        public async Task<IActionResult> PutTag(Tag tag)
         {
-            if (id != tag.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(tag).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TagExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            //if(id!=items.ID) return BadRequest();
+            await _blogRepository.Update(tag);
             return NoContent();
         }
 
-        // POST: api/Tags
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Tag>> PostTag(Tag tag)
         {
-          if (_context.Tags == null)
-          {
-              return Problem("Entity set 'BlogContext.Tags'  is null.");
-          }
-            _context.Tags.Add(tag);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetTag", new { id = tag.ID }, tag);
+            await _blogRepository.Add(tag);
+            return CreatedAtAction(nameof(GetTag), new { id = tag.ID }, tag);
         }
 
-        // DELETE: api/Tags/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTag(int id)
         {
-            if (_context.Tags == null)
-            {
-                return NotFound();
-            }
-            var tag = await _context.Tags.FindAsync(id);
-            if (tag == null)
-            {
-                return NotFound();
-            }
-
-            _context.Tags.Remove(tag);
-            await _context.SaveChangesAsync();
-
+            await _blogRepository.Delete(id);
             return NoContent();
         }
 
-        private bool TagExists(int id)
-        {
-            return (_context.Tags?.Any(e => e.ID == id)).GetValueOrDefault();
-        }
+        //private bool TagExists(int id)
+        //{
+        //    return _blogRepository.Tags.Any(e => e.ID == id);
+        //}
     }
 }
